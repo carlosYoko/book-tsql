@@ -9,7 +9,7 @@ GO
 -- Crear base de datos en /var/opt/mssql/data/VENTAS (Docker) con especifiacion de archivo maestro
 CREATE DATABASE VENTAS
 ON PRIMARY (
-NAME = 'VENTAS',
+NAME = 'VENTAS_PRI',
 FILENAME = '/var/opt/mssql/data/VENTAS/VENTAS.mdf',
 SIZE = 50MB,
 MAXSIZE = 150MB,
