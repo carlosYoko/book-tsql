@@ -6,7 +6,7 @@ IF DB_ID('VENTAS') IS NOT NULL
 	DROP DATABASE VENTAS
 GO
 
--- Crear base de datos en /var/opt/mssql/data/VENTAS (Docker) con especifiacion de archivo maestro y secundario
+-- Crear base de datos en /var/opt/mssql/data/VENTAS (Docker) con especifiacion de archivo primario y de transacciones
 CREATE DATABASE VENTAS
 	ON PRIMARY (
 	NAME = 'VENTAS_PRI',
@@ -14,13 +14,13 @@ CREATE DATABASE VENTAS
 	SIZE = 50MB,
 	MAXSIZE = 150MB,
 	FILEGROWTH = 20%
-),
-(
-	NAME = 'VENTAS_SEC',
-	FILENAME = '/var/opt/mssql/data/VENTAS/VENTAS.ndf',
-	SIZE = 10MB,
+)
+LOG ON(
+	NAME = 'VENTAS_LOG',
+	FILENAME = '/var/opt/mssql/data/VENTAS/VENTAS.ldf',
+	SIZE = 5MB,
 	MAXSIZE = 50MB,
-	FILEGROWTH = 2MB
+	FILEGROWTH = 10%
 )
 GO
 
